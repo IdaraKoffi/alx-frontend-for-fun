@@ -30,11 +30,8 @@ def apply_special_syntax(text):
 if __name__ == "__main__":
 
     if len(sys.argv) < 3:
-    print(
-        "Usage: ./markdown2html.py README.md README.html",
-        file=sys.stderr
-    )
-    exit(1)
+        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        exit(1)
 
     markdown_file = sys.argv[1]
     html_file = sys.argv[2]
@@ -47,32 +44,53 @@ if __name__ == "__main__":
         exit(1)
 
     html_content = []
+    in_list = None
+    paragraph = []
+
     for line in markdown_lines:
         line = line.strip()
 
         if line.startswith("#"):
+            if in_list:
+                html_content.append(f"</{in_list}>")
+                in_list = None
+            if paragraph:
+                html_content.append(f"<p>{'<br/>'.join(paragraph)}</p>")
+                paragraph = []
             level = len(line.split(' ')[0])
             if 1 <= level <= 6:
                 content = line[level + 1:].strip()
                 html_content.append(f"<h{level}>{content}</h{level}>")
         elif line.startswith('- '):
-            if not html_content or not html_content[-1].startswith("<ul>"):
+            if in_list != "ul":
+                if in_list:
+                    html_content.append(f"</{in_list}>")
                 html_content.append("<ul>")
+                in_list = "ul"
             content = line[2:].strip()
             html_content.append(f"<li>{content}</li>")
-            if html_content[-2] != "<ul>":
-                html_content.append("</ul>")
         elif line.startswith('* '):
-            if not html_content or not html_content[-1].startswith("<ol>"):
+            if in_list != "ol":
+                if in_list:
+                    html_content.append(f"</{in_list}>")
                 html_content.append("<ol>")
+                in_list = "ol"
             content = line[2:].strip()
             html_content.append(f"<li>{content}</li>")
-            if html_content[-2] != "<ol>":
-                html_content.append("</ol>")
         else:
+            if in_list:
+                html_content.append(f"</{in_list}>")
+                in_list = None
             if line:
-                content = line.replace("\n", "<br/>\n")
-                html_content.append(f"<p>{content}</p>")
+                paragraph.append(line)
+            elif paragraph:
+                html_content.append(f"<p>{'<br/>'.join(paragraph)}</p>")
+                paragraph = []
+
+    if in_list:
+        html_content.append(f"</{in_list}>")
+    if paragraph:
+        html_content.append(f"<p>{'<br/>'.join(paragraph)}</p>")
 
     for i in range(len(html_content)):
         html_content[i] = apply_bold_emphasis(html_content[i])
@@ -87,3 +105,4 @@ if __name__ == "__main__":
         exit(1)
 
     exit(0)
+
