@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with CSS</title>
+    <link href="0-styles.css" rel="stylesheet" type="text/css">
+    <link href="1-styles.css" rel="stylesheet" type="text/css">
+    <link href="2-styles.css" rel="stylesheet" type="text/css">
+    <link href="3-styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#task0">Task 0: Sprite Languages</a>
+    <a href="#task1">Task 1: Underline</a>
+    <a href="#task2">Task 2: Toggle</a>
+    <a href="#task3">Task 3: Menu</a>
+</nav>
+
+<section id="task0">
+    <h2>Task 0: Sprite Languages</h2>
+    <ul>
+        <li>HTML<span class="icon i-html"></span></li>
+        <li>CSS<span class="icon i-css"></span></li>
+        <li>JavaScript<span class="icon i-js"></span></li>
+    </ul>
+</section>
+
+<section id="task1">
+    <h2>Task 1: Underline</h2>
+    <h2>
+        Hello <a href="https://www.holbertonschool.com">Holberton!</a>
+    </h2>
+</section>
+
+<section id="task2">
+    <h2>Task 2: Toggle</h2>
+    <div class="toggle">
+        <input type="checkbox" name="toggle" class="toggle-cb" id="toggle-0" checked>
+        <label class="toggle-label" for="toggle-0">
+            <div class="toggle-inner"></div>
+            <div class="toggle-switch"></div>
+        </label>
+    </div>
+</section>
+
+<section id="task3">
+    <h2>Task 3: Menu</h2>
+    <nav class="menu">
+        <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+        <label class="menu-open-button" for="menu-open">
+            <span class="menu-line menu-line-1"></span>
+            <span class="menu-line menu-line-2"></span>
+            <span class="menu-line menu-line-3"></span>
+        </label>
+
+        <a href="#" class="menu-item"> <i class="fa fa-area-chart"></i> </a>
+        <a href="#" class="menu-item"> <i class="fa fa-bar-chart"></i> </a>
+        <a href="#" class="menu-item"> <i class="fa fa-line-chart"></i> </a>
+        <a href="#" class="menu-item"> <i class="fa fa-pie-chart"></i> </a>
+        <a href="#" class="menu-item"> <i class="fa fa-table"></i> </a>
+    </nav>
+</section>
+
+</body>
+</html>
