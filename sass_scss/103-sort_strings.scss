@@ -1,0 +1,5 @@
+/* Sorting Lists */
+$list-to-sort: john anna zoe kim felicia carrie;
+
+@debug sort($list-to-sort);
+
